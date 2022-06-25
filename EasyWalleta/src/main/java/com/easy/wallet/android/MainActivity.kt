@@ -27,9 +27,12 @@ import com.easy.wallet.android.theme.EasyTheme
 import com.easy.wallet.models.TokenAsset
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import wallet.core.jni.HDWallet
 
 class MainActivity : AppCompatActivity() {
+    private val greeting: Greeting by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                     LaunchedEffect(key1 = null) {
                         scope.launch(Dispatchers.IO) {
                             state.value = try {
-                                Greeting().getHtml()
+                                greeting.getHtml()
                             } catch (e: Exception) {
                                 e.printStackTrace()
                                 Log.e("Error", e.message.orEmpty())

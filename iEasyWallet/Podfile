@@ -2,5 +2,6 @@ target 'iEasyWallet' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'TrustWalletCore'
+  pod 'Kingfisher', '~> 7.0'
   pod 'shared', :path => '../shared'
 end

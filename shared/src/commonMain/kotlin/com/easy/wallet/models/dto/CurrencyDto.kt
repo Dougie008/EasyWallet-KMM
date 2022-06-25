@@ -4,6 +4,8 @@ import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
 internal data class CurrencyDto(
+    @SerialName("slug")
+    val slug: String,
     @SerialName("chain")
     val chain: String,
     @SerialName("chain_name")

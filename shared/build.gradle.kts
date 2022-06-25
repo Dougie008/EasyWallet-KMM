@@ -27,10 +27,12 @@ kotlin {
         val ktorVersion = "2.0.2"
         val commonMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("io.ktor:ktor-client-cio:$ktorVersion")
+                implementation(Deps.Koin.core)
+                with(Deps.Ktor) {
+                    implementation(core)
+                    implementation(negotiation)
+                    implementation(json)
+                }
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
             }
         }
@@ -54,7 +56,7 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation(Deps.Ktor.darwin)
             }
         }
         val iosX64Test by getting

@@ -33,6 +33,11 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
     implementation(project(":shared"))
 
+    with(Deps.Koin) {
+        implementation(core)
+        implementation(android)
+    }
+
     implementation("androidx.compose.ui:ui:1.2.0-rc02")
     implementation("androidx.compose.material3:material3:1.0.0-alpha13")
     implementation("androidx.compose.material3:material3-window-size-class:1.0.0-alpha13")

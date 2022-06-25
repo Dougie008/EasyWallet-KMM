@@ -10,7 +10,7 @@ import io.ktor.client.request.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-class Greeting {
+class Greeting() {
     private val client = HttpClient {
         install(ContentNegotiation) {
             json(Json {
@@ -24,6 +24,7 @@ class Greeting {
     suspend fun getHtml(): List<TokenAsset> {
         val response = client.get("") {
             parameter("page_size", 20)
+
         }.body<BaseResponseDto>()
         return response.currencies.map {
             it.toTokenAsset()
