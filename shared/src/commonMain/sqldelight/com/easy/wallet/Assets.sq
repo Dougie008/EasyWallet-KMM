@@ -1,0 +1,13 @@
+CREATE TABLE tokenAssetEntity (
+    slug TEXT NOT NULL,
+    icon TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    decimal INTEGER NOT NULL
+);
+
+selectAll:
+SELECT * FROM tokenAssetEntity;
+
+insertTokenAsset:
+INSERT INTO tokenAssetEntity
+VALUES ?;

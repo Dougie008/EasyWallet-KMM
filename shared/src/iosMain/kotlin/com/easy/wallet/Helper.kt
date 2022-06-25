@@ -9,6 +9,7 @@ import org.koin.core.context.startKoin
 
 class KoinHelper: KoinComponent {
     private val easyApi: EasyApi by inject()
+    fun api(): EasyApi = easyApi
     suspend fun loadAssets(): List<TokenAsset> {
         return easyApi.loadAssets()
     }

@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.6.21"
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -33,6 +34,8 @@ kotlin {
                     implementation(negotiation)
                     implementation(json)
                 }
+                implementation(Deps.SqlDelight.runtime)
+                implementation(Deps.SqlDelight.coroutines)
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
             }
         }
@@ -44,6 +47,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(Deps.SqlDelight.android)
             }
         }
         val androidTest by getting
@@ -57,6 +61,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(Deps.Ktor.darwin)
+                implementation(Deps.SqlDelight.native)
             }
         }
         val iosX64Test by getting
@@ -77,5 +82,12 @@ android {
     defaultConfig {
         minSdk = 25
         targetSdk = 32
+    }
+}
+
+sqldelight {
+    database("WalletDatabase") {
+        packageName = "com.easy.wallet"
+        sourceFolders = listOf("sqldelight")
     }
 }

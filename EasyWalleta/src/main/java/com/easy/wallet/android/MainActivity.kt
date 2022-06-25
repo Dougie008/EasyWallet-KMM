@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
         setContent {
             EasyTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    val hdWallet = HDWallet(
+                    /*val hdWallet = HDWallet(
                         "credit expect life fade cover suit response wash pear what skull force",
                         ""
-                    )
+                    )*/
                     val scope = rememberCoroutineScope()
                     val state = remember {
                         mutableStateOf(emptyList<TokenAsset>())

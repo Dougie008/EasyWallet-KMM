@@ -1,3 +1,3 @@
 package com.easy.wallet.di
 
-fun appModule() = listOf(remoteModule)
+fun appModule() = listOf(remoteModule, localModule)
