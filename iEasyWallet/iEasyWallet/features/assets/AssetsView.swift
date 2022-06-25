@@ -11,23 +11,12 @@ import shared
 import Kingfisher
 
 struct AssetsView: View {
-    let helper = KoinHelper()
-    
-    @State var content = "Loading..."
-    @State var assets = [TokenAsset]()
-    
-    func load() {
-        helper.loadAssets { result, error in
-            self.assets = result!
-        }
-        content = helper.api().loadLocalTokenAsset()
-    }
+    @ObservedObject var viewModel = AssetsViewModel(slug: "Ethereum")
     
     var body: some View {
         VStack {
             TopbarView()
-            Text(content)
-            List (assets, id: \.self) { item in
+            List (viewModel.items, id: \.self) { item in
                 NavigationLink{
                     Text(item.icon)
                 } label: {
@@ -40,8 +29,6 @@ struct AssetsView: View {
                     }.id(item.slug)
                 }
             }
-        }.onAppear() {
-            load()
         }
     }
 }

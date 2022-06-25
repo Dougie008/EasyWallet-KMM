@@ -14,6 +14,8 @@
 		1622F88028669A0C00BA1EFE /* DAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622F87F28669A0C00BA1EFE /* DAppsView.swift */; };
 		1622F8862866A44200BA1EFE /* TopbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622F8852866A44200BA1EFE /* TopbarView.swift */; };
 		1622F8882866A94B00BA1EFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622F8872866A94B00BA1EFE /* SettingsView.swift */; };
+		1622F88C28675D8E00BA1EFE /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622F88B28675D8E00BA1EFE /* Collector.swift */; };
+		1622F88E28675E3B00BA1EFE /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622F88D28675E3B00BA1EFE /* AssetsViewModel.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		97F6D0A1BAE050E5D36DCBC3 /* Pods_iEasyWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F08F738003C51193A47DDE5A /* Pods_iEasyWallet.framework */; };
 /* End PBXBuildFile section */
@@ -26,6 +28,8 @@
 		1622F87F28669A0C00BA1EFE /* DAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAppsView.swift; sourceTree = "<group>"; };
 		1622F8852866A44200BA1EFE /* TopbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopbarView.swift; sourceTree = "<group>"; };
 		1622F8872866A94B00BA1EFE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1622F88B28675D8E00BA1EFE /* Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collector.swift; sourceTree = "<group>"; };
+		1622F88D28675E3B00BA1EFE /* AssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewModel.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iEasyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iEasyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 		1622F8782866992500BA1EFE /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				1622F88D28675E3B00BA1EFE /* AssetsViewModel.swift */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -102,6 +107,14 @@
 				1622F8852866A44200BA1EFE /* TopbarView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		1622F88A28675D6F00BA1EFE /* commond */ = {
+			isa = PBXGroup;
+			children = (
+				1622F88B28675D8E00BA1EFE /* Collector.swift */,
+			);
+			path = commond;
 			sourceTree = "<group>";
 		};
 		1D8F96030876B27334C82A38 /* Pods */ = {
@@ -134,6 +147,7 @@
 		7555FF7D242A565900829871 /* iEasyWallet */ = {
 			isa = PBXGroup;
 			children = (
+				1622F88A28675D6F00BA1EFE /* commond */,
 				1622F8842866A42100BA1EFE /* views */,
 				1622F8782866992500BA1EFE /* viewmodels */,
 				1622F8752866980100BA1EFE /* features */,
@@ -270,9 +284,11 @@
 				1622F88028669A0C00BA1EFE /* DAppsView.swift in Sources */,
 				1622F87B2866997000BA1EFE /* MainScreen.swift in Sources */,
 				1622F87E286699E200BA1EFE /* AssetsView.swift in Sources */,
+				1622F88C28675D8E00BA1EFE /* Collector.swift in Sources */,
 				1622F8882866A94B00BA1EFE /* SettingsView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				1622F8862866A44200BA1EFE /* TopbarView.swift in Sources */,
+				1622F88E28675E3B00BA1EFE /* AssetsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

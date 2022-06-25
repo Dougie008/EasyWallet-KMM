@@ -7,12 +7,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 
-class KoinHelper: KoinComponent {
-    private val easyApi: EasyApi by inject()
-    fun api(): EasyApi = easyApi
-    suspend fun loadAssets(): List<TokenAsset> {
-        return easyApi.loadAssets()
-    }
+object KoinHelper: KoinComponent {
+    fun api() = getKoin().get<EasyApi>()
 }
 
 fun initKoin() {

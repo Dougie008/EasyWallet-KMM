@@ -73,7 +73,7 @@ internal object IntListParameterSerializer : KSerializer<IntListParameter> {
     }
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@ExperimentalSerializationApi
 @Serializer(forClass = BaseRpcRequest::class)
 internal object RpcRequestBodySerializer : KSerializer<BaseRpcRequest> {
     override fun deserialize(decoder: Decoder): BaseRpcRequest {
