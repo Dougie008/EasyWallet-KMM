@@ -22,17 +22,16 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.easy.wallet.Greeting
 import com.easy.wallet.android.theme.EasyTheme
 import com.easy.wallet.models.TokenAsset
+import com.easy.wallet.remote.EasyApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import wallet.core.jni.HDWallet
 
 class MainActivity : AppCompatActivity() {
-    private val greeting: Greeting by inject()
-
+    private val easyApi: EasyApi by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     LaunchedEffect(key1 = null) {
                         scope.launch(Dispatchers.IO) {
                             state.value = try {
-                                greeting.getHtml()
+                                easyApi.loadAssets()
                             } catch (e: Exception) {
                                 e.printStackTrace()
                                 Log.e("Error", e.message.orEmpty())

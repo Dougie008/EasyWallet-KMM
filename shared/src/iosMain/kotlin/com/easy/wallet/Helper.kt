@@ -2,14 +2,15 @@ package com.easy.wallet
 
 import com.easy.wallet.di.appModule
 import com.easy.wallet.models.TokenAsset
+import com.easy.wallet.remote.EasyApi
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 
 class KoinHelper: KoinComponent {
-    private val greeting: Greeting by inject()
+    private val easyApi: EasyApi by inject()
     suspend fun loadAssets(): List<TokenAsset> {
-        return greeting.getHtml()
+        return easyApi.loadAssets()
     }
 }
 
