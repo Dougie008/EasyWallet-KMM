@@ -13,9 +13,6 @@ struct MainView: View {
         colors: [.blue.opacity(0.3), .green.opacity(0.5)],
         startPoint: .topLeading,
         endPoint: .bottomTrailing)
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor.systemPink
-    }
     var body: some View {
         NavigationView {
             TabView {

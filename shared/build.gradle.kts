@@ -25,7 +25,6 @@ kotlin {
     }
     
     sourceSets {
-        val ktorVersion = "2.0.2"
         val commonMain by getting {
             dependencies {
                 implementation(Deps.Koin.core)
@@ -33,6 +32,7 @@ kotlin {
                     implementation(core)
                     implementation(negotiation)
                     implementation(json)
+                    implementation(logging)
                 }
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutines)
@@ -46,7 +46,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(Deps.Ktor.okhttp)
                 implementation(Deps.SqlDelight.android)
             }
         }

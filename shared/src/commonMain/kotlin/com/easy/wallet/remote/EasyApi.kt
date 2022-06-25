@@ -21,7 +21,7 @@ class EasyApi(
             }.body<BaseResponseDto>().currencies.map {
                 it.toTokenAsset()
             }
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             emptyList()
         }
         return response
@@ -29,12 +29,14 @@ class EasyApi(
 
     fun insertToken() {
         database.assetsQueries.transaction {
-            database.assetsQueries.insertTokenAsset(com.easy.wallet.TokenAssetEntity(
-                slug = "hello2",
-                symbol = "world2",
-                icon = "icon_url2",
-                decimal = 8
-            ))
+            database.assetsQueries.insertTokenAsset(
+                com.easy.wallet.TokenAssetEntity(
+                    slug = "hello2",
+                    symbol = "world2",
+                    icon = "icon_url2",
+                    decimal = 8
+                )
+            )
         }
     }
 

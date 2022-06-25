@@ -10,6 +10,7 @@ import com.easy.wallet.serializers.StringParameterSerializer
 import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -26,6 +27,11 @@ val remoteModule = module {
                 header("Content-type", "application/json")
                 contentType(ContentType.Application.Json)
             }
+
+            install(Logging) {
+                logger = Logger.DEFAULT
+            }
+
             install(ContentNegotiation) {
                 json(
                     Json {

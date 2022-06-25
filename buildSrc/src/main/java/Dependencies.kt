@@ -15,7 +15,9 @@ object Deps {
         const val negotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
 
+        const val okhttp = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
         const val darwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
+        const val logging = "io.ktor:ktor-client-logging:${Versions.ktor}"
     }
     object SqlDelight {
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
