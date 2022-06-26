@@ -5,6 +5,9 @@ object Versions {
 }
 
 object Deps {
+    const val Settings = "com.russhwolf:multiplatform-settings:0.9"
+    const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
+
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
         const val test = "io.insert-koin:koin-test:${Versions.koin}"

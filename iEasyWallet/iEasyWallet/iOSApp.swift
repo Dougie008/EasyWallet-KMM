@@ -5,7 +5,8 @@ import shared
 struct iOSApp: App {
     
     init() {
-        HelperKt.doInitKoin()
+        let userDefaults = UserDefaults(suiteName: "EASYWALLET_SETTINGS")
+        HelperKt.doInitKoin(userDefaults: userDefaults!)
     }
     
 	var body: some Scene {

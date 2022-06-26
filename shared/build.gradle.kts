@@ -36,7 +36,9 @@ kotlin {
                 }
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutines)
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+
+                implementation(Deps.Serialization)
+                implementation(Deps.Settings)
             }
         }
         val commonTest by getting {
