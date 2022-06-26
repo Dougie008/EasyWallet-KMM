@@ -2,12 +2,18 @@ object Versions {
     const val koin = "3.2.0"
     const val ktor = "2.0.2"
     const val sqldelight = "1.5.3"
+    const val lifecycle = "2.4.1"
 }
 
 object Deps {
     const val Settings = "com.russhwolf:multiplatform-settings:0.9"
     const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+
+    object Lifecycle {
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+        const val compose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycle}"
+    }
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"

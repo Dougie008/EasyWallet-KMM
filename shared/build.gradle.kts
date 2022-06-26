@@ -48,7 +48,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(Deps.lifecycleViewModel)
+                implementation(Deps.Lifecycle.viewModel)
                 implementation(Deps.Ktor.okhttp)
                 implementation(Deps.SqlDelight.android)
             }

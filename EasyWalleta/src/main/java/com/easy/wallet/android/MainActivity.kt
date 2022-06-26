@@ -10,28 +10,29 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.flowWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.easy.wallet.android.theme.EasyTheme
 import com.easy.wallet.models.TokenAsset
 import com.easy.wallet.remote.EasyApi
+import com.easy.wallet.viewmodels.AssetsViewModel
+import com.easy.wallet.viewmodels.AssetsViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import wallet.core.jni.HDWallet
 
 class MainActivity : AppCompatActivity() {
-    private val easyApi: EasyApi by inject()
+    private val viewModel: AssetsViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -42,23 +43,17 @@ class MainActivity : AppCompatActivity() {
                         ""
                     )*/
                     val scope = rememberCoroutineScope()
-                    val state = remember {
-                        mutableStateOf(emptyList<TokenAsset>())
+                    viewModel.loadLocal()
+                    val lifecycleOwner = LocalLifecycleOwner.current
+                    val lifecycleAssetsFlow = remember(viewModel.assetsState, lifecycleOwner) {
+                        viewModel.assetsState.flowWithLifecycle(lifecycleOwner.lifecycle)
                     }
-                    LaunchedEffect(key1 = null) {
-                        scope.launch(Dispatchers.IO) {
-                            state.value = try {
-                                easyApi.loadAssets()
-                            } catch (e: Exception) {
-                                e.printStackTrace()
-                                Log.e("Error", e.message.orEmpty())
-                                emptyList()
-                            }
-                        }
+                    val assetState by lifecycleAssetsFlow.collectAsState(initial = viewModel.assetsState.value).also {
+                        Log.i("=====", it.value.localContent)
                     }
 
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
-                        items(items = state.value) {
+                        items(items = assetState.tokenAssets) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
