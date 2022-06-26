@@ -1,4 +1,8 @@
 package com.easy.wallet.viewmodels
 
-class ViewModel {
+import kotlinx.coroutines.CoroutineScope
+
+expect abstract class ViewModel() {
+    val viewModelScope: CoroutineScope
+    protected open fun onCleared()
 }

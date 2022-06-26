@@ -6,23 +6,41 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import Foundation
+import Combine
+import SwiftUI
 import shared
 
 class AssetsViewModel: ObservableObject {
-    @Published var items = [TokenAsset]()
+    
     private let assetSlug: String
-    private let easyApi = KoinHelper.shared.api()
+    private var viewModel: AssetsCallbackViewModel?
+    
+    @Published var loading = false
+    @Published var items = [TokenAsset]()
+    
+    private var cancellables = [AnyCancellable]()
     
     init(slug: String) {
         self.assetSlug = slug
+    }
+    
+    func activate() {
+        let viewModel = KoinHelper.shared.getAssetsViewModel()
+        doPublish(viewModel.assetsState) { [weak self] assetsState in
+            self?.loading = assetsState.isLoading
+            self?.items = assetsState.tokenAssets
+            
+            print(assetsState.localContent)
+        }.store(in: &cancellables)
         
-        print(easyApi.loadLocalTokenAsset())
-        
-        easyApi.loadAssets { result, err in
-            DispatchQueue.main.async {
-                self.items = result!
-            }
-        }
+        self.viewModel = viewModel
+    }
+    
+    func deactivate() {
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+
+        viewModel?.clear()
+        viewModel = nil
     }
 }

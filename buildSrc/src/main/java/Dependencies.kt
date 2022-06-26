@@ -7,6 +7,7 @@ object Versions {
 object Deps {
     const val Settings = "com.russhwolf:multiplatform-settings:0.9"
     const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"

@@ -2,6 +2,7 @@ package com.easy.wallet
 
 import com.easy.wallet.di.appModule
 import com.easy.wallet.remote.EasyApi
+import com.easy.wallet.viewmodels.AssetsCallbackViewModel
 import com.russhwolf.settings.AppleSettings
 import com.russhwolf.settings.Settings
 import org.koin.core.component.KoinComponent
@@ -11,6 +12,7 @@ import platform.Foundation.NSUserDefaults
 
 object KoinHelper: KoinComponent {
     fun api() = getKoin().get<EasyApi>()
+    fun getAssetsViewModel() = getKoin().get<AssetsCallbackViewModel>()
 }
 
 fun initKoin(

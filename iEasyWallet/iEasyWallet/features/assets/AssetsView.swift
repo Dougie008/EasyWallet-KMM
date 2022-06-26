@@ -16,18 +16,41 @@ struct AssetsView: View {
     var body: some View {
         VStack {
             TopbarView()
-            List (viewModel.items, id: \.self) { item in
-                NavigationLink{
-                    Text(item.icon)
-                } label: {
-                    HStack {
-                        KFImage.url(URL(string: item.icon))
-                            .fade(duration: 0.25)
-                            .resizable()
-                            .frame(width: 40.0, height: 40.0)
-                        Text(item.symbol)
-                    }.id(item.slug)
+            AssetListContent(
+                loading: viewModel.loading,
+                assets: viewModel.items
+            ).onAppear() {
+                viewModel.activate()
+            }.onDisappear() {
+                viewModel.deactivate()
+            }
+        }
+    }
+}
+
+struct AssetListContent: View {
+    var loading: Bool
+    var assets: [TokenAsset]?
+    
+    var body: some View {
+        ZStack {
+            if let assets = assets {
+                List (assets, id: \.self) { item in
+                    NavigationLink{
+                        Text(item.icon)
+                    } label: {
+                        HStack {
+                            KFImage.url(URL(string: item.icon))
+                                .fade(duration: 0.25)
+                                .resizable()
+                                .frame(width: 40.0, height: 40.0)
+                            Text(item.symbol)
+                        }.id(item.slug)
+                    }
                 }
+            }
+            if loading {
+                Text("Loading...")
             }
         }
     }
