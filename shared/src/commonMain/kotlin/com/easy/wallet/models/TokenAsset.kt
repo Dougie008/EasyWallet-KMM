@@ -12,5 +12,6 @@ data class TokenAsset(
     val decimal: Int,
     val contractAddress: String? = null,
     val tag: AssetTag? = null,
+    val address: String? = null,
     val balance: BigInteger = BigInteger.ZERO
 )

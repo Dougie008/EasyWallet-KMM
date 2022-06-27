@@ -88,7 +88,7 @@ internal class EthereumChain(
 
     private fun rpc(): String {
         return when(chainId()) {
-            Network.MAIN.id -> HttpRoutes.POLYGON_MAINNET_RPC
+            Network.MAIN.id -> HttpRoutes.MAINNET_RPC
             Network.ROPSTEN.id -> HttpRoutes.ROPSTEN_RPC
             Network.RINKEBY.id -> HttpRoutes.RINKEBY_RPC
             else -> HttpRoutes.MAINNET_RPC

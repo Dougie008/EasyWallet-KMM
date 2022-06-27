@@ -18,9 +18,9 @@ class AssetsViewModel(
     )
     val assetsState: StateFlow<AssetsViewState> = mutableAssetsViewState
 
-    init {
+    /*init {
         observeAssets()
-    }
+    }*/
 
     private fun observeAssets() {
         viewModelScope.launch {
@@ -31,7 +31,36 @@ class AssetsViewModel(
                         val balance = async {
                             Pair(
                                 item.slug,
-                                coinRepository.balance(item.chain, "0x81080a7e991bcdddba8c2302a70f45d6bd369ab5", item.contractAddress)
+                                coinRepository.balance(item.chain, item.address.orEmpty(), item.contractAddress)
+                            )
+                        }
+                        balances.add(balance)
+                    }
+                }
+                val balanceResult = balances.awaitAll()
+                it.map { item ->
+                    val actualBalance = balanceResult.find { it.first == item.slug }?.second ?: BigInteger.ZERO
+                    item.copy(balance = actualBalance)
+                }
+            }
+
+            mutableAssetsViewState.update {
+                AssetsViewState(isLoading = false, tokenAssets = tokenAssets)
+            }
+        }
+    }
+
+    fun inject(injectAddress: (List<TokenAsset>) -> List<TokenAsset>) {
+        viewModelScope.launch {
+            val tokenAssets = injectAddress(assetsRepository.loadAssets()).let {
+                println("${it.map { it.address }}")
+                val balances = mutableListOf<Deferred<Pair<String, BigInteger>>>()
+                coroutineScope {
+                    for (item in it) {
+                        val balance = async {
+                            Pair(
+                                item.slug,
+                                coinRepository.balance(item.chain, item.address.orEmpty(), item.contractAddress)
                             )
                         }
                         balances.add(balance)

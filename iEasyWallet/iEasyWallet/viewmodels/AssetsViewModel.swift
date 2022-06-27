@@ -19,6 +19,8 @@ class AssetsViewModel: ObservableObject {
     @Published var loading = false
     @Published var items = [TokenAsset]()
     
+    private let hdWallet = HDWallet(mnemonic: "credit expect life fade cover suit response wash pear what skull force", passphrase: "")
+    
     private var cancellables = [AnyCancellable]()
     
     init(slug: String) {
@@ -27,6 +29,18 @@ class AssetsViewModel: ObservableObject {
     
     func activate() {
         let viewModel = KoinHelper.shared.getAssetsViewModel()
+        viewModel.inject { assets in
+            assets.map { asset in
+                switch asset.chain {
+                case NetworkChain.ethereum:
+                    return asset.doCopy(slug: asset.slug, symbol: asset.symbol, icon: asset.icon, chain: asset.chain, decimal: asset.decimal, contractAddress: asset.contractAddress, tag: asset.tag, address: self.hdWallet?.getAddressForCoin(coin: .ethereum), balance: asset.balance)
+                case NetworkChain.solana:
+                    return asset.doCopy(slug: asset.slug, symbol: asset.symbol, icon: asset.icon, chain: asset.chain, decimal: asset.decimal, contractAddress: asset.contractAddress, tag: asset.tag, address: self.hdWallet?.getAddressForCoin(coin: .solana), balance: asset.balance)
+                default:
+                    return asset.doCopy(slug: asset.slug, symbol: asset.symbol, icon: asset.icon, chain: asset.chain, decimal: asset.decimal, contractAddress: asset.contractAddress, tag: asset.tag, address: self.hdWallet?.getAddressForCoin(coin: .ethereum), balance: asset.balance)
+                }
+            }
+        }
         doPublish(viewModel.assetsState) { [weak self] assetsState in
             self?.loading = assetsState.isLoading
             self?.items = assetsState.tokenAssets
