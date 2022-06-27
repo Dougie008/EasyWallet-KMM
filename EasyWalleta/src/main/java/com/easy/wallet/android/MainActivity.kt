@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                         viewModel.assetsState.flowWithLifecycle(lifecycleOwner.lifecycle)
                     }
                     val assetState by lifecycleAssetsFlow.collectAsState(initial = viewModel.assetsState.value).also {
-                        Log.i("=====", it.value.localContent)
+                        Log.i("=====", it.value.tokenAssets.map { it.balance }.toString())
                     }
 
                     LazyColumn(modifier = Modifier.fillMaxSize()) {

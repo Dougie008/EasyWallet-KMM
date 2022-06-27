@@ -39,6 +39,7 @@ kotlin {
 
                 implementation(Deps.Serialization)
                 implementation(Deps.Settings)
+                api("com.ionspin.kotlin:bignum:0.3.3")
             }
         }
         val commonTest by getting {

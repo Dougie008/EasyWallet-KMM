@@ -9,6 +9,8 @@ import com.easy.wallet.models.dto.BaseRpcResponseDto
 import com.easy.wallet.models.dto.CallParameter
 import com.easy.wallet.models.dto.StringParameter
 import com.easy.wallet.remote.HttpRoutes
+import com.ionspin.kotlin.bignum.integer.BigInteger
+import com.ionspin.kotlin.bignum.integer.toBigInteger
 import com.russhwolf.settings.Settings
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -32,7 +34,7 @@ internal class EthereumChain(
         return block.invoke()
     }
 
-    override suspend fun balance(address: String, contract: String?): Long = withContext(Dispatchers.Default) {
+    override suspend fun balance(address: String, contract: String?): BigInteger = withContext(Dispatchers.Default) {
         try {
             val reqBody = if (contract.isNullOrEmpty()) {
                 BaseRpcRequest(
@@ -63,9 +65,12 @@ internal class EthereumChain(
                 url(rpc())
                 setBody(reqBody)
             }.body()
-            response.result.clearHexPrefix().toLong(16)
+            println("response: $response")
+            response.result.clearHexPrefix().toBigInteger(16)
         } catch (e: Exception) {
-            0L
+            e.printStackTrace()
+            println("error: ${e.message}")
+            BigInteger.ZERO
         }
     }
 
@@ -83,7 +88,7 @@ internal class EthereumChain(
 
     private fun rpc(): String {
         return when(chainId()) {
-            Network.MAIN.id -> HttpRoutes.MAINNET_RPC
+            Network.MAIN.id -> HttpRoutes.POLYGON_MAINNET_RPC
             Network.ROPSTEN.id -> HttpRoutes.ROPSTEN_RPC
             Network.RINKEBY.id -> HttpRoutes.RINKEBY_RPC
             else -> HttpRoutes.MAINNET_RPC

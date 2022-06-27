@@ -30,8 +30,9 @@ class AssetsViewModel: ObservableObject {
         doPublish(viewModel.assetsState) { [weak self] assetsState in
             self?.loading = assetsState.isLoading
             self?.items = assetsState.tokenAssets
-            
-            print(assetsState.localContent)
+            assetsState.tokenAssets.forEach { item in
+                print("balance: \(item.balance)")
+            }
         }.store(in: &cancellables)
         
         self.viewModel = viewModel

@@ -2,6 +2,7 @@ package com.easy.wallet.repositories
 
 import com.easy.wallet.domain.enums.NetworkChain
 import com.easy.wallet.domain.models.TransactionPlan
+import com.ionspin.kotlin.bignum.integer.BigInteger
 
 class CoinRepository(
     private val assetsRepository: AssetsRepository
@@ -10,7 +11,7 @@ class CoinRepository(
         return assetsRepository.find(chain).sign(plan, block)
     }
 
-    suspend fun balance(chain: NetworkChain, address: String, contract: String?): Long {
+    suspend fun balance(chain: NetworkChain, address: String, contract: String?): BigInteger {
         return assetsRepository.find(chain).balance(address, contract)
     }
 

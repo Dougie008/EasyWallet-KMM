@@ -46,6 +46,8 @@ struct AssetListContent: View {
                                 .frame(width: 40.0, height: 40.0)
                             Text(item.symbol)
                         }.id(item.slug)
+                        Spacer()
+                        Text("\(item.balance)")
                     }
                 }
             }

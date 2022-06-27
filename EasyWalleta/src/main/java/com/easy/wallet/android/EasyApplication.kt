@@ -1,6 +1,8 @@
 package com.easy.wallet.android
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import com.easy.wallet.di.appModule
 import com.easy.wallet.viewmodels.AssetsViewModel
 import org.koin.android.ext.koin.androidContext
@@ -21,8 +23,11 @@ class EasyApplication: Application() {
             androidContext(this@EasyApplication)
             androidLogger()
             modules(appModule(module {
+                single<SharedPreferences> {
+                    get<Context>().getSharedPreferences("EASYWALLET_SETTINGS", Context.MODE_PRIVATE)
+                }
                 viewModel {
-                    AssetsViewModel(get())
+                    AssetsViewModel(get(), get())
                 }
             }))
         }
