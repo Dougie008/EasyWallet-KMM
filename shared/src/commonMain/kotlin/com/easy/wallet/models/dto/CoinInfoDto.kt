@@ -1,7 +1,7 @@
 package com.easy.wallet.models.dto
 
-import com.easy.wallet.models.enums.AssetTag
-import com.easy.wallet.models.enums.NetworkChain
+import com.easy.wallet.domain.enums.AssetTag
+import com.easy.wallet.domain.enums.NetworkChain
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

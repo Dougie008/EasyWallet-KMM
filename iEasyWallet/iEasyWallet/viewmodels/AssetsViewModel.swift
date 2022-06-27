@@ -9,6 +9,7 @@
 import Combine
 import SwiftUI
 import shared
+import WalletCore
 
 class AssetsViewModel: ObservableObject {
     

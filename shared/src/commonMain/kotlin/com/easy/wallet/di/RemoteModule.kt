@@ -4,7 +4,6 @@ import com.easy.wallet.models.dto.CallParameter
 import com.easy.wallet.models.dto.IntListParameter
 import com.easy.wallet.models.dto.Parameter
 import com.easy.wallet.models.dto.StringParameter
-import com.easy.wallet.remote.EasyApi
 import com.easy.wallet.repositories.AssetsRepository
 import com.easy.wallet.serializers.IntListParameterSerializer
 import com.easy.wallet.serializers.StringParameterSerializer
@@ -52,6 +51,5 @@ val remoteModule = module {
             }
         }
     }
-    singleOf(::EasyApi)
     singleOf(::AssetsRepository)
 }

@@ -1,4 +1,4 @@
-package com.easy.wallet.models.enums
+package com.easy.wallet.domain.enums
 
 import kotlinx.serialization.SerialName
 

@@ -22,14 +22,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.easy.wallet.android.theme.EasyTheme
-import com.easy.wallet.models.TokenAsset
-import com.easy.wallet.remote.EasyApi
 import com.easy.wallet.viewmodels.AssetsViewModel
-import com.easy.wallet.viewmodels.AssetsViewState
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import wallet.core.jni.HDWallet
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: AssetsViewModel by inject()
